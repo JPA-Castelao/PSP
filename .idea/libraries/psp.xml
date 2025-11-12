@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="psp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/tarea25.zip!/" />
+      <root url="jar://$PROJECT_DIR$/tarea6.zip!/" />
+      <root url="jar://$PROJECT_DIR$/tarea23.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

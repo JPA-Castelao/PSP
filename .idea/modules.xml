@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Examen1PSP/Examen1PSP.iml" filepath="$PROJECT_DIR$/Examen1PSP/Examen1PSP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PSP-09/PSP-09.iml" filepath="$PROJECT_DIR$/PSP-09/PSP-09.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PSP-11/PSP-11.iml" filepath="$PROJECT_DIR$/PSP-11/PSP-11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PSPTarea17/PSPTarea17.iml" filepath="$PROJECT_DIR$/PSPTarea17/PSPTarea17.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PSPTarea18/PSPTarea18.iml" filepath="$PROJECT_DIR$/PSPTarea18/PSPTarea18.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PSPTarefa21/PSPTarefa21.iml" filepath="$PROJECT_DIR$/PSPTarefa21/PSPTarefa21.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SincroAvanzada/SincroAvanzada.iml" filepath="$PROJECT_DIR$/SincroAvanzada/SincroAvanzada.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea12/Tarea12.iml" filepath="$PROJECT_DIR$/Tarea12/Tarea12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea24/Tarea24.iml" filepath="$PROJECT_DIR$/Tarea24/Tarea24.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea5/Tarea5.iml" filepath="$PROJECT_DIR$/Tarea5/Tarea5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarefa 13/Tarefa 13.iml" filepath="$PROJECT_DIR$/Tarefa 13/Tarefa 13.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarefa 14/Tarefa 14.iml" filepath="$PROJECT_DIR$/Tarefa 14/Tarefa 14.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multihilo/multihilo.iml" filepath="$PROJECT_DIR$/multihilo/multihilo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/multihilo0/multihilo0.iml" filepath="$PROJECT_DIR$/multihilo0/multihilo0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/psp.iml" filepath="$PROJECT_DIR$/.idea/psp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/psp4/psp4.iml" filepath="$PROJECT_DIR$/psp4/psp4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea 12/tarea 12.iml" filepath="$PROJECT_DIR$/tarea 12/tarea 12.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea02/tarea02.iml" filepath="$PROJECT_DIR$/tarea02/tarea02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea09multihilo/tarea09multihilo.iml" filepath="$PROJECT_DIR$/tarea09multihilo/tarea09multihilo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea15/tarea15.iml" filepath="$PROJECT_DIR$/tarea15/tarea15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea16/tarea16.iml" filepath="$PROJECT_DIR$/tarea16/tarea16.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea2/tarea2.iml" filepath="$PROJECT_DIR$/tarea2/tarea2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea23/tarea23.iml" filepath="$PROJECT_DIR$/tarea23/tarea23.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea25/tarea25.iml" filepath="$PROJECT_DIR$/tarea25/tarea25.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea26/tarea26.iml" filepath="$PROJECT_DIR$/tarea26/tarea26.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea27/tarea27.iml" filepath="$PROJECT_DIR$/tarea27/tarea27.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea6/tarea6.iml" filepath="$PROJECT_DIR$/tarea6/tarea6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea8MH/tarea8MH.iml" filepath="$PROJECT_DIR$/tarea8MH/tarea8MH.iml" />
+    </modules>
+  </component>
+</project>
