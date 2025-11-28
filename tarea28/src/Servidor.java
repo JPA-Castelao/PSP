@@ -6,6 +6,7 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.nio.Buffer;
+import java.util.Date;
 
 public class Servidor {
 
@@ -18,7 +19,6 @@ public class Servidor {
 
             ServerSocket socketServidor = new ServerSocket();
             socketServidor.bind(direccionIp);
-
             System.out.println("Iniciando conexion al servidor");
 
             while (true) {
@@ -26,7 +26,6 @@ public class Servidor {
                 System.out.println("Cliente conectado");
                 GestorClientes hilo = new GestorClientes(cliente);
                 hilo.start();
-
             }
 
 
