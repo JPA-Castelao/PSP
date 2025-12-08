@@ -22,6 +22,7 @@ public class Cliente1 {
                     new InputStreamReader(socketCliente.getInputStream())
             );
 
+
             PrintWriter pw = new PrintWriter(socketCliente.getOutputStream(), true);
 
 

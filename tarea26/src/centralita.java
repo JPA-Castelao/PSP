@@ -16,6 +16,7 @@ public class centralita {
 
             System.out.println("La IP del cliente es " + socketCliente.getInetAddress());
 
+
             socketCliente.close();
             ss.close();
         } catch (IOException e) {
