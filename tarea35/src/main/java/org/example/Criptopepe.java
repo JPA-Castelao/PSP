@@ -8,6 +8,11 @@ import java.net.http.HttpResponse;
 public class Criptopepe {
 
 
+        public static void buscarMoneda(String body){
+
+        }
+
+
     public static void peticion() {
 
         HttpClient cliente = HttpClient.newHttpClient();
@@ -23,6 +28,7 @@ public class Criptopepe {
 
             HttpResponse<String> response = cliente.send(request, HttpResponse.BodyHandlers.ofString());
             System.out.println(response.body());
+            buscarMoneda(response.body());
 
 
         } catch (Exception e) {
