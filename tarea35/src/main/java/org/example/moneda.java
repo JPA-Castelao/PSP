@@ -2,18 +2,29 @@ package org.example;
 
 public class moneda {
 
-    private String nombre;
-    private String simbolo;
-    private long precio;
-    private int ranking;
-    private double variacion24h;
+    private String name;
+    private String symbol;
+    private double price_usd;
+    private int rank;
+    private double percent_change_24h;
 
+    public String getName() {
+        return name;
+    }
 
-    public moneda(String nombre, String simbolo, int ranking, double variacion24h) {
-        this.nombre = nombre;
-        this.simbolo = simbolo;
-        double precio;
-        this.ranking = ranking;
-        this.variacion24h = variacion24h;
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public double getPrice_usd() {
+        return price_usd;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public double getPercent_change_24h() {
+        return percent_change_24h;
     }
 }
