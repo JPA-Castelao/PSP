@@ -45,6 +45,7 @@ public class Criptopepe {
                 throw new InterruptedException();
             }
 
+
         } catch (IOException | InterruptedException e) {
             System.err.println("ERROR AL REALIZAR LA PETICION" + e.getMessage());
             throw new RuntimeException(e);
@@ -72,7 +73,7 @@ public class Criptopepe {
             Gson gson = new Gson();
             moneda monedaBuscada = gson.fromJson(jsonMoneda, moneda.class);
             //
-            List<moneda> listaMonedas = monedaBuscada.getListaMonedas();
+            //List<moneda> listaMonedas = monedaBuscada.getListaMonedas();
 
         } catch (IOException | InterruptedException e) {
 
