@@ -73,6 +73,7 @@ public class Criptopepe {
             Gson gson = new Gson();
             moneda monedaBuscada = gson.fromJson(jsonMoneda, moneda.class);
             //
+
             //List<moneda> listaMonedas = monedaBuscada.getListaMonedas();
 
         } catch (IOException | InterruptedException e) {
