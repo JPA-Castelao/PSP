@@ -65,23 +65,50 @@ public class SecuritySuite {
     public static class decodificadorCesar {
 
 
+        ArrayList<String> claveDecodificada = new ArrayList<>();
+
         public decodificadorCesar(String clave) {
-            String[] claveEnArray = clave.split("//s+");
-            char[] elementoClaveEnArray;
-            for (String s : claveEnArray) {
 
-                elementoClaveEnArray = s.toCharArray();
+            String[] aux = clave.toUpperCase().split("//s+");
+            ArrayList<String> palabrasClave = new ArrayList<>();
+            ArrayList<Character> caracteresClave = new ArrayList<>();
 
-                recorrerElementosClave(elementoClaveEnArray);
+            for (String claveAux : aux) {
+                palabrasClave.add(claveAux);
             }
+            for (String claveAux : palabrasClave) {
+                for (char c : claveAux.toCharArray()) {
+                    caracteresClave.add(c);
+                }
+
+
+            }
+
 
         }
 
-        public void recorrerElementosClave(char[] elementoARecorrer) {
+        public void compararCaracteresClave(ArrayList<Character> lista) {
+            ArrayList<Character> palabraDecodificada = new ArrayList<>();
+            char[] alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray();
+
+
+            for (char c : alfabeto) {
+
+                for (Character ch : lista) {
+
+                    if (!ch.equals(c)) {
+                        palabraDecodificada.add(ch);
+                    }
+                }
 
 
 
+            }
 
+
+        }
+
+        public void comprobacionAPI(){
 
         }
 
