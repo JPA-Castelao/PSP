@@ -116,9 +116,16 @@ public class SecuritySuite {
 
         public boolean comprobacionAPI(String palabra) {
             Gson gson = new Gson();
+            String api = "https://api.languagetool.org/v2/check";
             try {
 
-
+                String formatoPeticion = "text=" + palabra + "&language=es-ES";
+                HttpClient cliente = HttpClient.newHttpClient();
+                HttpRequest peticion = HttpRequest.newBuilder()
+                        .uri(URI.create(api))
+                        .header("Content-Type", "application/x-www-form-urlencoded")
+                        .POST(HttpRequest.BodyPublishers.ofString(formatoPeticion))
+                        .build();
 
 
 
