@@ -24,6 +24,13 @@ public class GestorClientes extends Thread {
             System.out.println("Cliente desconectado");
         } catch (IOException e) {
             System.err.println("Error con cliente:" + e.getMessage());
+        } finally {
+            try {
+                cliente.close();
+                System.out.println("Cliente desconocido");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
 
