@@ -17,7 +17,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 public class SecuritySuite {
+    public static void main(String[] args) {
 
+        //auditoria ss = new auditoria("4a630b8e79a0cd2fbae3f58e751abb28d0f4918f76af188d8996f13fabe08af8");
+        decodificadorCesar dc = new decodificadorCesar("KRÑD");
+    }
 
     public static class auditoria {
 
@@ -74,52 +78,86 @@ public class SecuritySuite {
 
         ArrayList<String> claveDecodificada = new ArrayList<>();
 
+
+        public void compararPartesClave(char[] palabra) {
+            char[] aux = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray();
+            ArrayList<Character> alfabeto = new ArrayList<>();
+            for (char c : aux) {
+
+                alfabeto.add(c);
+            }
+            ArrayList<Character> palabraNueva;
+            int longitudAlfabeto = alfabeto.size();
+
+
+            for (int i = 0; i < longitudAlfabeto; i++) {
+                palabraNueva = new ArrayList<>();
+                for (char c : palabra) {
+
+                    int nuevaPosicion = (alfabeto.indexOf(c) + i) % longitudAlfabeto;
+
+                    palabraNueva.add(alfabeto.get(nuevaPosicion));
+                }
+
+                StringBuilder sb = new StringBuilder();
+                for (Character ch : palabraNueva) {
+                    sb.append(ch);
+                }
+                comprobacionAPI(sb.toString());
+
+            }
+
+
+        }
+
         public decodificadorCesar(String clave) {
-
-            String[] aux = clave.toUpperCase().split("//s+");
-            ArrayList<String> palabrasClave = new ArrayList<>();
-            ArrayList<Character> caracteresClave = new ArrayList<>();
-
-            for (String claveAux : aux) {
-                palabrasClave.add(claveAux);
-            }
-            for (String claveAux : palabrasClave) {
-                for (char c : claveAux.toCharArray()) {
-                    caracteresClave.add(c);
-                }
-
-
-            }
-
-
-        }
-
-        public void compararCaracteresClave(ArrayList<Character> lista) {
-            ArrayList<Character> palabraDecodificada = new ArrayList<>();
-            char[] alfabeto = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".toCharArray();
-
-
-            for (char c : alfabeto) {
-
-                for (Character ch : lista) {
-
-                    if (!ch.equals(c)) {
-                        palabraDecodificada.add(ch);
-                    }
-                }
-
-
-            }
-
+//            //Quitamos los espacios y convertimos la caedena en array de Strings
+//            String[] partesClave = clave.toUpperCase().split("//s+");
+//
+//            char[] caracteresParteClave;
+//
+//
+//            //variable auxiliar para enviar al metodo comprobacionAPI
+//            ArrayList<Character> palabraParaComprobar = new ArrayList<>();
+//
+//            //Recorremos cada elemento del String que formaba la cadena original
+//            for (String s : partesClave) {
+//                //Convertimos cada String de la cadena en un array de caracteres
+//                for (String parte : partesClave) {
+//                    caracteresParteClave = parte.toCharArray();
+//
+//
+//                }
+//
+//
+//            }
+//
+            compararPartesClave(clave.toCharArray());
 
         }
 
-        public boolean comprobacionAPI(String palabra) {
-            Gson gson = new Gson();
+
+        public void comprobacionAPI(String palabra) {
+            String api = "https://api.languagetool.org/v2/check";
             try {
 
+                String formatoPeticion = "text=" + palabra + "&language=es-ES";
+                HttpClient cliente = HttpClient.newHttpClient();
+                HttpRequest peticion = HttpRequest.newBuilder().uri(URI.create(api)).header("Content-Type", "application/x-www-form-urlencoded").POST(HttpRequest.BodyPublishers.ofString(formatoPeticion)).build();
 
 
+                HttpResponse<String> response = cliente.send(peticion, HttpResponse.BodyHandlers.ofString());
+                Gson gson = new Gson();
+
+                JsonObject respuesta = gson.fromJson(response.body(), JsonObject.class);
+                JsonArray arrayJson = respuesta.getAsJsonArray("matches");
+
+                if (arrayJson.isEmpty()) {
+                    System.out.println(palabra + " existe");
+                } else {
+                    System.out.println(palabra + " no existe");
+
+                }
 
 
             } catch (IOException e) {
@@ -128,16 +166,17 @@ public class SecuritySuite {
                 throw new RuntimeException(e);
             }
 
-
         }
 
 
     }
 
 
-    public static void main(String[] args) {
-        //auditoria ss = new auditoria("4a630b8e79a0cd2fbae3f58e751abb28d0f4918f76af188d8996f13fabe08af8");
-
-    }
-
 }
+
+
+
+
+
+
+
