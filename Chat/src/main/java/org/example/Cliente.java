@@ -9,58 +9,87 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class Cliente {
-    private String ip;
-    private int puerto;
-    private String nick;
 
-    public void pedirIpPuertoNick() {
+    private Scanner sc = new Scanner(System.in);
+    public String nick;
 
-        Scanner sc = new Scanner(System.in);
-
+    public String pedirIp() {
+        String ip;
         System.out.println("Introduce una ip para conectarte al servidor");
-        this.ip = sc.nextLine();
-        System.out.println("Introduce un puerto para conectarte al servidor");
-        this.puerto = sc.nextInt();
+        ip = sc.nextLine();
         sc.nextLine();
-        System.out.println("Introduce un nick para conectarte al servidor");
-        this.nick = sc.nextLine();
-
+        return ip;
     }
 
+    public int pedirPuerto() {
+        int puerto;
+        System.out.println("Introduce un puerto para conectarte al servidor");
+        puerto = sc.nextInt();
+        sc.nextLine();
+        return puerto;
+    }
+
+    public void pedirNick() {
+        String nick;
+        System.out.println("Introduce un nick para conectarte al servidor");
+        this.nick = sc.nextLine();
+    }
+
+
     public Cliente() {
-        BufferedReader lector;
-        PrintWriter escritor;
+
+        //Inentamos establecer conexion al servidor
+        InetSocketAddress dir = new InetSocketAddress(pedirIp(), pedirPuerto());
         try {
-
-            pedirIpPuertoNick();
-            InetSocketAddress dir = new InetSocketAddress(this.ip, this.puerto);
-            Socket socket = new Socket();
+            Socket socket;
+            socket = new Socket();
             socket.connect(dir);
+            //OBLIGATORIO
             System.out.println("Conectado a la sala de chat");
-
-            lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            escritor = new PrintWriter(socket.getOutputStream(), true);
-
-            escritor.println(this.nick);
-
-            while (true) {
-                mensajeCliente = lector.readLine();
-                if (!mensajeCliente.equals("/bye")) {
-                    escritor.printf("\n %s : %s ", nickCliente, mensajeCliente);
-
-                } else {
-                    break;
-                }
-            }
-            cliente.close();
+            pedirNick();
+            logicaCliente(socket);
 
 
         } catch (Exception e) {
-            System.err.println("Imposible conectar al servidor");
+            System.err.println("Error al conectar a la sala de chat");
         }
 
 
     }
+
+    public void logicaCliente(Socket socket) {
+
+        String mensaje;
+        String nick = this.nick;
+        try (BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream())); PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);
+
+        ) {
+            while (true) {
+                System.out.println(lector.readLine());
+                mensaje = sc.nextLine();
+                escritor.print(mensaje);
+                if (mensaje.equals("/bye")) {
+                    throw new Exception("cerrar");
+                }
+                sc.nextLine();
+            }
+
+
+        } catch (Exception e) {
+
+        } finally {
+            try {
+                socket.close();
+                System.err.println("Se ha cerrado el cliente");
+
+            } catch (Exception e) {
+
+            }
+        }
+
+
+    }
+
 
     public static void main(String[] args) {
 
