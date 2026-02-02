@@ -16,25 +16,24 @@ public class GestorClientes extends Thread {
 
         this.cliente = cliente;
     }
+
     public void run() {
 
         String nickCliente;
         String mensajeCliente;
         try (BufferedReader lector = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
-
              PrintWriter escritor = new PrintWriter(cliente.getOutputStream(), true);
-
         ) {
+
 
             nickCliente = lector.readLine();
             System.out.printf("\n el usuario %s ha entrado al chat", nickCliente);
-
-
             while (true) {
+
                 mensajeCliente = lector.readLine();
+
                 if (!mensajeCliente.equals("/bye")) {
                     escritor.printf("\n %s : %s ", nickCliente, mensajeCliente);
-
                 } else {
                     break;
                 }

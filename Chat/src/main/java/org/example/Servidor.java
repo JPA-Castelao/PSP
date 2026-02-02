@@ -26,6 +26,7 @@ public class Servidor {
                 //1.Acepta la conexion
                 //2.Crea un hilo
                 pool.execute(new GestorClientes(servidor.accept()));
+
             }
 
 
@@ -39,6 +40,9 @@ public class Servidor {
 
     }
 
+    public void gestionMensajes() {
+
+    }
 
     public static void main(String[] args) {
         Servidor server = new Servidor();

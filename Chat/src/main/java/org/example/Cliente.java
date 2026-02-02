@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class Cliente {
 
     private Scanner sc = new Scanner(System.in);
-    public String nick;
 
     public String pedirIp() {
         String ip;
@@ -29,10 +28,10 @@ public class Cliente {
         return puerto;
     }
 
-    public void pedirNick() {
+    public String pedirNick() {
         String nick;
         System.out.println("Introduce un nick para conectarte al servidor");
-        this.nick = sc.nextLine();
+        return nick = sc.nextLine();
     }
 
 
@@ -46,7 +45,6 @@ public class Cliente {
             socket.connect(dir);
             //OBLIGATORIO
             System.out.println("Conectado a la sala de chat");
-            pedirNick();
             logicaCliente(socket);
 
 
@@ -60,20 +58,18 @@ public class Cliente {
     public void logicaCliente(Socket socket) {
 
         String mensaje;
-        String nick = this.nick;
-        try (BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream())); PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);
+        try (BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream())); PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);) {
+            escritor.println(pedirNick());
+            HiloCliente hc = new HiloCliente(lector);
 
-        ) {
+            hc.start();
             while (true) {
-                System.out.println(lector.readLine());
                 mensaje = sc.nextLine();
-                escritor.print(mensaje);
+                escritor.println(mensaje);
                 if (mensaje.equals("/bye")) {
                     throw new Exception("cerrar");
                 }
-                sc.nextLine();
             }
-
 
         } catch (Exception e) {
 
@@ -93,10 +89,8 @@ public class Cliente {
 
     public static void main(String[] args) {
 
+        Cliente c = new Cliente();
     }
 
 
 }
-
-
-
