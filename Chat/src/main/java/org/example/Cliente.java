@@ -44,6 +44,7 @@ public class Cliente {
             socket.connect(dir);
             //OBLIGATORIO
             System.out.println("Conectado a la sala de chat");
+            pedirNick();
             logicaCliente(socket);
 
 
@@ -62,6 +63,8 @@ public class Cliente {
 
                 BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
+
+            escritor.println(nick);
 
             HiloCliente hc = new HiloCliente(lector);
 
