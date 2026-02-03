@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Cliente {
 
     private Scanner sc = new Scanner(System.in);
-
+    public static String nick;
 
     public String pedirIp() {
         String ip;
@@ -30,7 +30,6 @@ public class Cliente {
     }
 
     public String pedirNick() {
-        String nick;
         System.out.println("Introduce un nick para conectarte al servidor");
         return nick = sc.nextLine();
     }
@@ -63,7 +62,7 @@ public class Cliente {
 
                 BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()))
         ) {
-            escritor.println(pedirNick());
+
             HiloCliente hc = new HiloCliente(lector);
 
             hc.start();

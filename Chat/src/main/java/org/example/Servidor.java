@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -16,7 +14,9 @@ public class Servidor {
 
     private final ServerSocket servidor;
     private final ExecutorService pool;
-    public static List<PrintWriter> listaClientes = new ArrayList<>();
+    //para que la lista esté sincronizada
+    //como synchronized pero para variables
+    public static List<PrintWriter> listaClientes = Collections.synchronizedList(new ArrayList<>());
 
     private int pedirPuerto() {
         Scanner sc = new Scanner(System.in);
@@ -24,6 +24,14 @@ public class Servidor {
         return sc.nextInt();
     }
 
+    public static void reenviar(String mensaje) {
+        synchronized (listaClientes) {
+
+            for (PrintWriter escritor : listaClientes) {
+                escritor.println(mensaje);
+            }
+        }
+    }
 
     public Servidor() {
 
@@ -45,8 +53,6 @@ public class Servidor {
                 GestorClientes gc = new GestorClientes(servidor.accept());
                 //Crea un hilo
                 pool.execute(gc);
-                listaClientes.add(gc.escritor);
-
             }
 
 

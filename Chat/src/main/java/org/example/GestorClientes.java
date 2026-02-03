@@ -11,10 +11,9 @@ public class GestorClientes extends Thread {
 
     private Socket cliente;
     private BufferedReader bf;
-    private PrintWriter pw;
 
     private String nickCliente;
-    private List<PrintWriter> listaEscritores;
+    public static PrintWriter escritor;
 
     public GestorClientes(Socket cliente) {
 
@@ -23,7 +22,23 @@ public class GestorClientes extends Thread {
 
     public void run() {
 
+        try {
+            escritor = new PrintWriter(cliente.getOutputStream());
+            bf = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        try {
+            Servidor.listaClientes.add(escritor);
+            nickCliente = bf.readLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.printf("\n El usuario %s se ha conectado\n Hay %d usuarios conectados", Servidor.listaClientes.size());
 
     }
+
 
 }
