@@ -22,7 +22,15 @@ public class HiloCliente extends Thread {
                 System.out.println(mensajeServidor);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        } finally {
+            try {
+                lector.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
+
+
 }

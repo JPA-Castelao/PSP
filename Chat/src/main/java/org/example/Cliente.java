@@ -12,6 +12,7 @@ public class Cliente {
 
     private Scanner sc = new Scanner(System.in);
 
+
     public String pedirIp() {
         String ip;
         System.out.println("Introduce una ip para conectarte al servidor");
@@ -40,8 +41,7 @@ public class Cliente {
         //Inentamos establecer conexion al servidor
         InetSocketAddress dir = new InetSocketAddress(pedirIp(), pedirPuerto());
         try {
-            Socket socket;
-            socket = new Socket();
+            Socket socket = new Socket();
             socket.connect(dir);
             //OBLIGATORIO
             System.out.println("Conectado a la sala de chat");
@@ -58,7 +58,11 @@ public class Cliente {
     public void logicaCliente(Socket socket) {
 
         String mensaje;
-        try (BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream())); PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);) {
+        try (
+                PrintWriter escritor = new PrintWriter(socket.getOutputStream(), true);
+
+                BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()))
+        ) {
             escritor.println(pedirNick());
             HiloCliente hc = new HiloCliente(lector);
 
@@ -67,19 +71,21 @@ public class Cliente {
                 mensaje = sc.nextLine();
                 escritor.println(mensaje);
                 if (mensaje.equals("/bye")) {
-                    throw new Exception("cerrar");
+                    break;
                 }
             }
 
         } catch (Exception e) {
 
+
         } finally {
             try {
-                socket.close();
+                if (!socket.isClosed()) {
+                    socket.close();
+                }
                 System.err.println("Se ha cerrado el cliente");
-
             } catch (Exception e) {
-
+                e.printStackTrace();
             }
         }
 
