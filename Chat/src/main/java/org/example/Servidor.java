@@ -40,6 +40,22 @@ public class Servidor {
 
     public Servidor() {
 
+        //hook de cierre
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            reenviar("EL SERVIDOR VA A CERRAR");
+
+
+            reenviar("EL SERVIDOR SE HA CERRADO");
+
+            pool.shutdown();
+
+            try {
+                if (servidor != null) servidor.close();
+            } catch (Exception e) {
+                System.out.println("Cerror cerrado correctamente");
+            }
+        }));
+
 
         try {
             Socket cliente = new Socket();
@@ -53,7 +69,6 @@ public class Servidor {
             //Muestra la cantidad de clientes conectados
             if (listaClientes.isEmpty()) {
                 System.out.print("\n No hay clientes conectados ");
-
             }
             while (true) {
                 //Acepta la conexion
@@ -81,7 +96,8 @@ public class Servidor {
 
         } finally {
             reenviar("EL SERVIDOR SE HA CERRADO");
-            pool.close();
+
+            pool.shutdown();
         }
 
 
