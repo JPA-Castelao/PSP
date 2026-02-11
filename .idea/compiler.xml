@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Chat" />
-        <module name="tarea35" />
         <module name="tarea39" />
+        <module name="tarea35" />
+        <module name="tarea43" />
       </profile>
     </annotationProcessing>
   </component>

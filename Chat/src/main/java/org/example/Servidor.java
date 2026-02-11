@@ -79,9 +79,7 @@ public class Servidor {
                     GestorClientes gc = new GestorClientes(cliente);
                     //Crea un hilo
                     pool.execute(gc);
-                    if (listaClientes.isEmpty()) {
-                        System.out.print("\n No hay clientes conectados ");
-                    }
+
 
                 } catch (RejectedExecutionException e) {
                     System.out.println("No puede haber más de 10 clientes conectados");

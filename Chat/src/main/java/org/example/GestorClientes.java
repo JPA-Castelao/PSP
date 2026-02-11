@@ -73,8 +73,12 @@ public class GestorClientes extends Thread {
         } finally {
             try {
                 cliente.close();
+
                 Servidor.listaClientes.remove(escritor);
                 Servidor.listaNicks.remove(nickCliente);
+                if (Servidor.listaClientes.isEmpty()) {
+                    System.out.print("\n No hay clientes conectados ");
+                }
                 Servidor.reenviar(String.format("\n  (%s) SE HA DESCONECTADO", nickCliente));
             } catch (IOException e) {
                 throw new RuntimeException(e);
